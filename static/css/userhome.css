@@ -1,0 +1,94 @@
+
+.userhome {
+    margin-top: 30px;
+    bottom:0;
+    font-size: 30px;
+    text-align: center;
+}
+
+h1, .menu.active {
+    color: white;
+}
+
+h2, .subheader, b {
+    color: #2974e4;
+}
+
+
+.subheader {
+    font-size:50px;
+    padding-bottom: 20px;
+}
+
+.item {
+    text-align: left;
+    padding:0px;
+    padding:20px;
+    float:left;
+    width:100%;
+}
+
+.challenge {
+    padding-top:15px;
+    padding-bottom:0;
+    padding-left: 30px;
+    display: inline-block;
+    vertical-align:top;
+}
+
+.challenge-name {
+    font-size:25px;
+    height: 100px;
+    width: 140px;
+    float: center;
+    text-align: center;
+    vertical-align:top;
+}
+
+
+a.challenge-title{
+    text-align: left;
+    padding:0px;
+    padding:20px;
+    float:left;
+    width:100%;
+}
+
+
+.badge {
+    padding-top:15px;
+    padding-bottom:0;
+    padding-left: 30px;
+    display: inline-block;
+}
+
+a.badges-title{
+    text-align: left;
+    padding:0px;
+    padding:20px;
+    float:left;
+    width:100%;
+}
+
+.challenge-image {
+    padding: 0px 20px 15px 20px;
+    display: inline-block;
+    vertical-align:top;
+}
+
+.badge-image {
+    padding: 0px 20px 15px 20px;
+}
+
+.badge-name {
+    font-size:25px;
+    height: 100px;
+    width: 140px;
+    float: center;
+    text-align: center;
+}
+
+.finish {
+    margin-left: 30px;
+
+}

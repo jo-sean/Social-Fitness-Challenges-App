@@ -1,2 +1,1 @@
-# -Social-Fitness-Challenges-App
-App to promote different challenges. Cloud ready.
+# Crowd-Sourced-Fitness-Challenge-App

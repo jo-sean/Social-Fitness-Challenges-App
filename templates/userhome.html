@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/userhome.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/template.css')}}" type="text/css">
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="main">
+        <div class="header">
+          <h1>Fit Challenges</h1>
+        </div>
+
+        <div class="menu">
+          <div class="navItem">
+            <a href="/" class="active">Log Out</a>
+          </div>
+          <div class="navItem">
+            <a href="/badges/{{user_name["id"]}}" class="active">Wall of Fame</a>
+          </div>
+          <div class="navItem">
+            <a href="/challenges/{{user_name["id"]}}" class="active">View Challenges</a>
+          </div>
+          <div class="navItem">
+            <a href="/home/{{user_name["id"]}}/challenge" class="active">Create Challenge</a>
+          </div>
+          <div class="navItem">
+            <a href="/home/{{ user_name["id"] }}" class="active">Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="userhome">
+        <div class="subheader">
+          Welcome back, {{user_name["name"]}}
+        </div>
+
+ {#     Search functionality -- If there's time to add it
+        <form style="border:none; outline:0;" method="GET">
+          <fieldset>
+            <label style="font-size:18pt" for="search">Filter challenges based on keyword:</label>
+            <input type="text" name="input">
+            <input type="submit" name='search' value="Submit">
+            <input name="Reset" type="submit" value="Refresh Page">
+
+          </fieldset>
+        </form>
+        #}
+
+
+        {# Removing favorites unless there's time to add database functionality
+        <div class="item">
+          <b>Favorite Challenges</b>
+
+          <!--Make this section loop to look through the database and create
+          each block depending on how many challenges are labelled as favorites-->
+          <div class="challenge">
+            <div class="block">
+              <div class="challenge-image">
+              </div> <!-- Should include the challenge image -->
+              <div class="challenge-name">Challenge Name</div>
+            </div>
+
+            <div class="block">
+              <div class="challenge-image"></div> <!-- Should include the challenge image -->
+              <div class="challenge-name">Challenge Name</div>
+            </div>
+          </div>
+        </div>
+        #}
+
+
+        <div class="item">
+          <b>Active Challenges</b>
+            <br>
+            {% if active|length < 1 %}
+              <p>You currently don't have any active challenges!</p>
+            {%endif%}
+
+            {% if active|length > 0 %}
+                {% for row in active %}
+                     <div class="challenge">
+                          <div class="challenge-image">
+                              <img width = 100 height = 100 src="../static/images/challenges/challenge.png">
+                          </div>
+                          <div class="challenge-name">{{row[1]}}</div>
+
+                             <form action="/home/{{ user_name["id"] }}" method="POST">
+
+                                <input type="hidden" name='_METHOD' value="finish">
+                                <input type="hidden" name="id" value="{{row[0]}}">
+                                <button class="finish" type="submit">Complete</button>
+
+                             </form>
+                     </div>
+                {% endfor %}
+            {%endif%}
+        </div>
+
+        <div class="item">
+          <b>Completed Challenges</b>
+            <br>
+            {% if completed|length < 1 %}
+              <p>You haven't completed any challenges!</p>
+            {%endif%}
+
+            {% if completed|length > 0 %}
+                {% for row in completed %}
+                     <div class="challenge">
+                          <div class="challenge-image">
+                              <img width = 100 height = 100 src="../static/images/challenges/challenge.png">
+                          </div>
+                          <div class="challenge-name">{{row[1]}}</div>
+                     </div>
+                {% endfor %}
+            {%endif%}
+        </div>
+
+        <br>
+
+        <div class="item">
+          <b>Badges</b>
+        </br>
+          {% if challenges_completed <= 0:%}
+          <p>You haven't earned any badges yet!</p>
+        {%endif%}
+
+          {% if challenges_completed >= 1:%}
+            <div class="badge">
+              <div class="badge-image">
+                <img width = 100 height = 100 src="../static/images/badges/first.jpg">
+              </div> 
+              <div class="badge-name">Finished 1st Challenge!</div>
+            </div>
+          {%endif%}
+
+          {% if challenges_completed >= 3:%}
+          <div class="badge">
+            <div class="badge-image">
+              <img width = 100 height = 100 src="../static/images/badges/third.jpg">
+            </div> 
+            <div class="badge-name">Finished 3rd Challenge!</div>
+          </div>          
+        {%endif%}
+
+        {% if challenges_completed >= 5:%}
+        <div class="badge">
+          <div class="badge-image">
+            <img width = 100 height = 100 src="../static/images/badges/fifth.jpg">
+          </div> 
+          <div class="badge-name">Finished 5th Challenge!</div>
+        </div>          
+      {%endif%}
+
+      {% if challenges_completed >= 10:%}
+      <div class="badge">
+        <div class="badge-image">
+          <img width = 100 height = 100 src="../static/images/badges/tenth.jpg">
+        </div> 
+        <div class="badge-name">Finished 10th Challenge!</div>
+      </div>          
+    {%endif%}
+
+    {% if challenges_completed >= 15:%}
+    <div class="badge">
+      <div class="badge-image">
+        <img width = 100 height = 100 src="../static/images/badges/fifteenth.jpg">
+      </div> 
+      <div class="badge-name">Finished 15th Challenge!</div>
+    </div>          
+  {%endif%}
+
+        </div>
+        
+
+
+      </div>
+
+  </div>
+
+
+
+
+  </body>
+</html>

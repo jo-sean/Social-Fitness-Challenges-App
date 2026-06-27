@@ -1,0 +1,50 @@
+/* Referenced https://www.w3schools.com/css/tryit.asp?filename=trycss_forms*/ 
+input[type=text], select, input[list], input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #2974e4;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #2974e4
+  }
+  
+  .login .signup {
+    background-color: #f2f2f2;
+    text-align: center;
+    display: block;
+  }
+
+  form {
+      width: 50%;
+      display: inline-block;
+      text-align: left;
+  }
+
+  body {
+      text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .flash-message{
+    color: red
+  }

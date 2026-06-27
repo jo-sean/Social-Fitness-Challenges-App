@@ -1,0 +1,65 @@
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+
+.main {
+    overflow: hidden;
+    background-color:#2974e4;
+    color: white;
+    padding: 10px;
+    top:0;
+}
+
+.header {
+    font-size: 30px;
+}
+
+  /* If the screen is big enough, it shows all navigation items*/
+  @media only screen and (min-width:701px) {
+    .main {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin:0;
+    }
+    .menu {
+        padding: 20px;
+    }
+    .navItem {
+        font-family: Verdana,sans-serif;
+        font-size: 18px;
+        padding:16px;
+        float: right;
+    }
+    .active-page {
+        background-color: white;
+        font-family: Verdana,sans-serif;
+        font-size: 15px;
+        padding:16px;
+        float: right;
+    }
+}
+
+  /* If the screen is small, it shows the adjusted menu*/
+@media only screen and (max-width:700px) {
+    .active-page .navItem{
+        font-family: Verdana,sans-serif;
+        font-size: 18px;
+        padding:20px;
+        float:left;
+    }
+    .active-page{
+        background-color: white;
+        max-width: 130px;
+    }
+}
+
+.active {
+    color:white;
+    text-decoration: none;
+}
+
+.container {
+    top:0;
+    bottom:0;
+}

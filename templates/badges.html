@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/template.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/badges.css')}}" type="text/css">
+
+  </head>
+  <body>
+
+    <div class="main">
+      <div class="header">
+        <h1>Fit Challenges</h1>
+      </div>
+
+      <div class="menu">
+        <div class="navItem">
+          <a href="/" class="active">Log Out</a>
+        </div>
+        <div class="navItem">
+          <a href="/badges/{{uid}}" class="active">Wall of Fame</a>
+        </div>
+        <div class="navItem">
+          <a href="/challenges/{{uid}}" class="active">View Challenges</a>
+        </div>
+        <div class="navItem">
+          <a href="/home/{{uid}}/challenge" class="active">Create Challenge</a>
+        </div>
+        <div class="navItem">
+          <a  href="/home/{{uid}}" class="active">Profile</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="badges">
+        <div class="subheader">
+          Wall of Fame
+        </div>
+    <br>
+    <br>
+    <img width = 100 height = 100 src="../static/images/badges/first.jpg">
+    <h2>Finished 1st Challenge!</h2>
+
+    {%for user in badge_dict.items() %}
+    {%if user[1] > 0%}
+    <p class="users">{{user[0]}}</p>
+    {%endif%}
+    {%endfor%}
+
+    <br>
+    <br>
+    <img width = 100 height = 100 src="../static/images/badges/third.jpg">
+    <h2>Finished 3rd Challenge!</h2>
+
+    {%for user in badge_dict.items() %}
+    {%if user[1] > 2%}
+    <p class="users">{{user[0]}}</p>
+    {%endif%}
+    {%endfor%}
+
+    <br>
+    <br>
+    <img width = 100 height = 100 src="../static/images/badges/fifth.jpg">
+    <h2>Finished 5th Challenge!</h2>
+
+    {%for user in badge_dict.items() %}
+    {%if user[1] > 4%}
+    <p class="users">{{user[0]}}</p>
+    {%endif%}
+    {%endfor%}
+
+    <br>
+    <br>
+    <img width = 100 height = 100 src="../static/images/badges/tenth.jpg">
+    <h2>Finished 10th Challenge!</h2>
+
+    {%for user in badge_dict.items() %}
+    {%if user[1] > 9%}
+    <p class="users">{{user[0]}}</p>
+    {%endif%}
+    {%endfor%}
+
+    <br>
+    <br>
+    <img width = 100 height = 100 src="../static/images/badges/fifteenth.jpg">
+    <h2>Finished 15th Challenge!</h2>
+
+    {%for user in badge_dict.items() %}
+    {%if user[1] > 14%}
+    <p class="users">{{user[0]}}</p>
+    {%endif%}
+    {%endfor%}
+
+  </div>
+   </div>
+  </body>
+</html>

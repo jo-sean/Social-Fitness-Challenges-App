@@ -1,0 +1,75 @@
+.home {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+h1, .menu, .active {
+    color: white;
+}
+
+h2, .subheader {
+    color: #2974e4;
+}
+
+.subheader {
+    font-size: 50px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+th {
+    background-color: #2974e4;
+    padding:10px;
+    color: white;
+}
+
+.forms {
+    width: 100%;
+    float: center;
+    text-align: center;
+}
+
+#challenges {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.page-title {
+    padding-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.note {
+    text-align: center;
+}
+
+.completed {
+    color: #2974e4
+}
+
+.flash_message {
+    background-color: #FDD26E;
+    margin: auto;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.flash_message:before {
+  content:"";
+  background-color:#FDD26E;
+  position: absolute;
+  height: 25px;
+  width: 100000px;
+  left: -10000px;
+  z-index: -1;
+}
+
+.buttons {
+    width: 100%;
+    float: center;
+    text-align: center;
+}

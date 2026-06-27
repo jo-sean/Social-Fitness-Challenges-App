@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/template.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/create.css')}}" type="text/css">
+
+  </head>
+  <body>
+
+<div class="container">
+      <div class="main">
+        <div class="header">
+          <h1>Fit Challenges</h1>
+        </div>
+
+        <div class="menu">
+          <div class="navItem">
+            <a href="/" class="active">Log Out</a>
+          </div>
+          <div class="navItem">
+            <a href="/badges/{{user_name["id"]}}" class="active">Wall of Fame</a>
+          </div>
+          <div class="navItem">
+            <a href="/challenges/{{ user_name["id"] }}" class="active">View Challenges</a>
+          </div>
+          <div class="navItem">
+            <a href="/home/{{ user_name["id"]}}/challenge" class="active">Create Challenge</a>
+          </div>
+          <div class="navItem">
+            <a  href="/home/{{ user_name["id"] }}" class="active">Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="create">
+        <div class="subheader">
+          Create a Challenge
+        </div>
+
+      <div class="create-challenge">        
+        <form method="POST">
+          <fieldset>
+            <label for="name">Challenge Name:</label>
+            <input type="text" name="name" required>
+            <br>
+            <br>
+
+            <label>Exercise Type:</label>
+            <br>
+            <input list="exercise_type" name="exercise_type" required />
+            <datalist id="exercise_type">
+              {% for row in exercises['exercises'] %}
+                  <option data-value={{ row['name'] }}> {{ row['name'] }} </option>
+              {% endfor %}
+            </datalist>
+            <br>
+            <br>
+             <label for="description">Description:</label>
+            <input type="text" name="description" required>
+            <br>
+            <br>
+          <label for="duration">Duration:</label>
+            <input type="number" pattern="/d+" name="duration" required>
+          <br>
+              <br>
+          <label for="time_unit">Unit of Time:</label>
+          <select name="time_unit" id="time_unit" required>
+              <option value="months">Months</option>
+              <option value="days">Days</option>
+              <option value="hours">Hours</option>
+              <option value="minutes">Minutes</option>
+              <option value="seconds">Seconds</option>
+            </select>
+            <br>
+            <br>
+          <label for="goals">Goals:</label>
+          <input type="text" name="goals[]" required>
+          <input type="text" name="goals[]">
+          <input type="text" name="goals[]">
+            <br>
+            <br>
+            <label>Tags:</label>
+            <br>
+            <input list="tags" name="tags" required />
+            <datalist id="tags">
+              {% for row in tags['tags'] %}
+                  <option data-value={{ row['name'] }}> {{ row['name'] }} </option>
+              {% endfor %}
+            </datalist>
+            <br>
+            <br>
+            <input type="submit" name='submit' value="Submit">
+          </br>
+          </fieldset>
+        </form>
+      </div>
+
+  </body>
+</html>

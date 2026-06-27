@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/template.css')}}" type="text/css">
+      <link rel="stylesheet" href="{{ url_for('static', filename= 'css/participate.css')}}" type="text/css">
+
+
+  </head>
+  <body>
+
+  <div class="container">
+      <div class="main">
+        <div class="header">
+          <h1>Fit Challenges</h1>
+        </div>
+
+        <div class="menu">
+          <div class="navItem">
+            <a href="/" class="active">Log Out</a>
+          </div>
+          <div class="navItem">
+            <a href="/badges/{{content["id"]}}" class="active">Wall of Fame</a>
+          </div>
+          <div class="navItem">
+            <a href="/challenges/{{content["id"]}}" class="active">View Challenges</a>
+          </div>
+          <div class="navItem">
+            <a href="/home/{{content["id"]}}/challenge" class="active">Create Challenge</a>
+          </div>
+          <div class="navItem">
+            <a href="/home/{{content["id"]}}" class="active">Profile</a>
+          </div>
+        </div>
+      </div>
+
+
+  {% block content %}
+    <div>
+        {% for message in get_flashed_messages() %}
+        <div>
+            <p class="flash_message">{{ message }}</p>
+        </div>
+        {% endfor %}
+
+{#        {% block page_content %}{% endblock %}#}
+    </div>
+    {% endblock %}
+
+      <div class="home">
+        <div class="subheader">
+          Participate in a Challenge
+        </div>
+      </div>
+
+      <div class="float-container">
+        <div class="forms">
+            <h2>Search for Challenges by Tag</h2>
+
+            <form action="/challenges/search" method="POST">
+                <input name="tag" type="text" placeholder="Enter tag " required/>
+                <input name="user_id" type="hidden"  value="{{content["id"]}}" required/>
+                <button id="search-button1" type="submit">
+                    Search
+                </button>
+            </form>
+        </div>
+      </div>
+
+
+      <br>
+      <br>
+
+{#        <div class="forms">#}
+{#            <h2>Search for Challenges by Exercise</h2>#}
+{##}
+{#            <form action="challenges/search>" method="GET">#}
+{#                <input class="search-med" type="text" placeholder="Enter exercise type " required/>#}
+{#                <button id="search-button" type="submit" value="Submit">#}
+{#                    Search#}
+{#                </button>#}
+{#            </form>#}
+{#        </div>#}
+{#      </div>#}
+
+    <section>
+
+
+        <table id="challenges">
+
+        <div>
+            <h2 class="page-title">List of Available Challenges</h2>
+            <p class="note">(challenges you are already participating in or have completed are colored blue)</p>
+        </div>
+
+            <thead>
+                <tr>
+                    <th>Challenge Name</th>
+                    <th>Exercise Type</th>
+                    <th>Challenge Description</th>
+                    <th>Duration of exercise</th>
+                    <th>Unit of Time</th>
+                    <th>Goals</th>
+                    <th>Tags</th>
+                    <th></th>
+                    <th></th>
+{#                    <th></th>#}
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for row in content['challenges'] %}
+                <tr>
+                      {%if row.id in content['current_challenges']%}
+                     <td class="completed">{{row['name']}}</td> 
+                      {%else%}
+                      <td>{{row['name']}}</td>
+                      {%endif%}
+                    <td>{{row['exercise_type']}}</td>
+                    <td>{{row['description']}}</td>
+                    <td>{{row['duration']}}</td>
+                    <td>{{row['time_unit']}}</td>
+                    <td>{{row['goals']}}</td>
+                    <td>{{row['tags']}}</td>
+                    <td>
+
+                        <form action="/home/{{ content['user'] }}/challenges/{{row['id']}}" method="POST">
+                            <input type="hidden" name="_METHOD" value="PUT"/>
+                            <button class="alt-button" type="submit">Join/Leave</button>
+                        </form>
+                    </td>
+
+                    {% if row['owner'] == content['id'] %}
+                    <td>
+                        <form action="/home/{{ content['user'] }}/challenges/{{row['id']}}" method="GET">
+                            <button class="alt-button" type="submit"
+                                >Edit</button>
+                        </form>
+                    </td>
+
+                    {% endif %}
+
+{#                    <td>#}
+{#                        <form action="/challenges/{{row['id']}}/user/{{ content['user'] }}" method="DELETE">#}
+{#                            <button class="alt-button" type="submit"#}
+{#                                >Delete</button>#}
+{#                    </td>#}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <br>
+  </div>
+  <br>
+
+  {% if content['previous'] or content['next'] %}
+  <div class="buttons">
+  <a href="{{ content['previous'] }}" class="active">
+                            <button>Previous Page</button>
+      </a>
+      <a href="{{ content['next'] }}" class="active">
+                            <button>Next Page</button>
+      </a>
+  </div>
+
+  {% else %}
+    <div class="buttons">
+    <a href="/challenges/{{ content['id'] }}" class="active">
+                            <button>Back</button>
+      </a>
+    </div>
+  {% endif %}
+
+
+  </body>
+</html>

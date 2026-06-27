@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/template.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/index.css')}}" type="text/css">
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="main">
+        <div class="header">
+          <h1>Fit Challenges</h1>
+        </div>
+      </div>
+
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+       <div class="flash-message">
+      {{ messages[0] }}
+       </div>
+      {% endif %}
+      {% endwith %}
+
+        <div class="login">    
+          <h2>Already Have an Account? Log in!</h2>
+    
+          <form method="POST" action="/login" >
+            <fieldset>
+              <label for="name">Email:</label>
+              <input type="text" name="email">
+              <br>
+              <br>
+              <label for="name">Password:</label>
+              <input type="text" name="password">
+              <br>
+              <br>
+              <input type="submit" name='login' value="Login">
+            </br>
+            </fieldset>
+          </form>
+        </div>
+
+
+      <div class="signup">   
+        <h2>New Here? Create an Account!</h2>
+     
+
+        <form method="POST" action="/signup">
+          <fieldset>
+            <label for="name">First Name:</label>
+            <input type="text" name="fname" required>
+            <br>
+            <br>
+            <label for="name">Last Name:</label>
+            <input type="text" name="lname" required>
+            <br>
+            <br>
+            <label for="name">Email:</label>
+            <input type="text" name="email" required>
+            <br>
+            <br>
+            <label for="name">Password:</label>
+            <input type="text" name="password" required>
+            <br>
+            <br>
+            <input type="submit" name='signup' value="Sign up">
+          </br>
+          </fieldset>
+        </form>
+      </div>
+
+  </div>
+
+  </body>
+</html>
